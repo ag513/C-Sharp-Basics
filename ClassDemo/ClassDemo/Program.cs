@@ -24,3 +24,72 @@ namespace ClassDemo
             }
         }
 
+        public void PrintMessage()
+        {
+            Console.WriteLine("Calculating pay...");
+        }
+
+        public int CalculatePay()
+        {
+            PrintMessage();
+
+            int staffPay;
+            staffPay = hWorked * hourlyRate;
+
+            if (HoursWorked > 0)
+                return staffPay;
+            else
+                return 0;
+        }
+
+        public int CalculatePay(int bonus, int allowance)
+        {
+            if (hWorked > 0)
+                return hWorked * hourlyRate + bonus + allowance;
+            else
+                return 0;
+        }
+
+        public override string ToString()
+        {
+            return "Name of staff = " + nameOfStaff + ", HourleyRate = " + hourlyRate + ", hWorked = " + hWorked;
+        }
+
+        public Staff(string name)
+        {
+            nameOfStaff = name;
+            Console.WriteLine("\n" + nameOfStaff);
+            Console.WriteLine("-------------");
+        }
+
+        public Staff(string firstName, string lastName)
+        {
+            nameOfStaff = firstName + " " + lastName;
+            Console.WriteLine("\n" + nameOfStaff);
+            Console.WriteLine("--------------------------");
+        }
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int pay;
+
+            Staff staff1 = new Staff("Abhi");
+            staff1.HoursWorked = 37;
+            pay = staff1.CalculatePay(1000, 400);
+            Console.WriteLine("Pay = {0}", pay);
+
+            Staff staff2 = new Staff("Abhinav", "Gunishetty");
+            staff2.HoursWorked = 160;
+            pay = staff2.CalculatePay();
+            Console.WriteLine("Pay = {0}", pay);
+
+            Staff staff3 = new Staff("Gunishetty");
+            staff3.HoursWorked = -10;
+            pay = staff3.CalculatePay();
+            Console.WriteLine("Pay = {0}", pay);
+        }
+    }
+}
